@@ -1,0 +1,33 @@
+/**********/
+/* FONTS */
+/*********/
+
+$font-default: 'Montserrat', sans-serif;
+
+/***********/
+/* COLORS */
+/**********/
+
+$primary-color: #FF6060;
+$white: #ffffff;
+$black: #000000;
+$bg-grey: darken($white, 3.5%);
+$grey-light : darken($white, 11%);
+
+/*********/
+/* Size */
+/********/
+
+$wrapper: 63px 8% 50px;
+$wrapper-medium: 40px 8% 50px;
+$wrapper-small: 16px 20px 20px;
+
+
+/***************/
+/* RESPONSIVE */
+/**************/
+
+// 1.Breakpoints map for responsive
+$breakpoints: (
+    medium: 1024px
+);

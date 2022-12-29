@@ -1,0 +1,28 @@
+@use './variables';
+
+/**********/
+/* FONTS */
+/*********/
+
+// 1.Transform function for font size in pixels into rem
+@function calculate-rem($size) {
+    $remSize: calc($size / 16px);
+    @return #{$remSize}rem;
+}
+
+// 2.Contain font size in pixel and rem
+@mixin font-size($size) {
+    font-size: $size;
+    font-size: calculate-rem($size);
+}
+
+/***************/
+/* RESPONSIVE */
+/**************/
+
+// 1. Contain media queries for medium screen
+@mixin medium-break {
+    @media screen and (max-width: map-get(variables.$breakpoints, medium)) {
+        @content;
+    }
+}
