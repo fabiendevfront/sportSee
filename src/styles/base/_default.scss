@@ -1,0 +1,40 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/************/
+/* GENERAL */
+/***********/
+
+* {
+    box-sizing: border-box;
+}
+
+*:focus-visible {
+    box-shadow: 0 0 0 4px variables.$primary-color;
+    outline: 0;
+}
+
+html,
+body,
+#root,
+.app {
+    height: 100%;
+}
+
+html {
+    font-size: 100%;
+}
+
+main {
+    flex-grow: 1;
+    padding: variables.$wrapper;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+li {
+    list-style-type: none;
+}
