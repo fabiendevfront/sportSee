@@ -6,6 +6,7 @@
 /******************/
 
 .home {
+    padding: variables.$wrapper;
 
     &__profiles {
         display: flex;

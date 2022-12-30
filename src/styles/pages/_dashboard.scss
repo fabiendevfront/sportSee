@@ -1,0 +1,16 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/*************************/
+/* DASHBOARD PAGE STYLE */
+/***********************/
+
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+
+    &__content {
+        padding: variables.$wrapper;
+        flex-grow: 1;
+    }
+}

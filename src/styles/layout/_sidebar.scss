@@ -1,0 +1,12 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/******************/
+/* SIDEBAR LAYOUT */
+/*****************/
+
+.sidebar {
+    width: 117px;
+    height: 100vh;
+    background-color: variables.$black;
+}

@@ -1,7 +1,12 @@
+import Sidebar from "../layout/Sidebar";
+
 const Dashboard = () => {
     return (
-        <div>
-            <h2>Dashboard</h2>
+        <div className="dashboard">
+            <Sidebar />
+            <div className="dashboard__content">
+                <h2>Dashboard</h2>
+            </div>
         </div>
     );
 };
