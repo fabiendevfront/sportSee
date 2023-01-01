@@ -1,5 +1,5 @@
 import * as data from "../mock/mockData.js";
-import Profile from "../components/Profile";
+import ProfileCard from "../components/ProfileCard";
 
 const Home = () => {
     console.log(data.USER_MAIN_DATA);
@@ -10,7 +10,7 @@ const Home = () => {
                 <div className="home">
                     <div className="home__profiles">
                         {data.USER_MAIN_DATA.map((profile) =>
-                            <Profile key={profile.id} id={profile.id} firstName={profile.userInfos.firstName} />
+                            <ProfileCard key={profile.id} id={profile.id} firstName={profile.userInfos.firstName} />
                         )}
                     </div>
                 </div>
