@@ -1,7 +1,17 @@
 const Sidebar = () => {
     return (
         <div className="sidebar">
-            <h2>Sidebar</h2>
+            <ul className="sidebar__activities">
+                <li className="sidebar__item sidebar__item--yoga"></li>
+                <li className="sidebar__item sidebar__item--swimming"></li>
+                <li className="sidebar__item sidebar__item--cycling"></li>
+                <li className="sidebar__item sidebar__item--strengthening"></li>
+            </ul>
+            <div className="sidebar__copyright">
+                <p className="copyright-text">
+                    Copyright, SportSee {new Date().getFullYear()}
+                </p>
+            </div>
         </div>
     );
 };

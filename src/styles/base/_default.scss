@@ -17,17 +17,13 @@
 html,
 body,
 #root,
-.app {
+.app,
+main {
     height: 100%;
 }
 
 html {
     font-size: 100%;
-}
-
-main {
-    flex-grow: 1;
-    // padding: variables.$wrapper;
 }
 
 img {

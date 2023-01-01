@@ -1,11 +1,11 @@
 @use '../abstracts/variables';
 @use '../abstracts/mixins';
 
-/************************/
-/* ERROR 404 PAGE STYLE */
-/************************/
+/**************************/
+/* COMING SOON PAGE STYLE */
+/**************************/
 
-.error-404 {
+.coming-soon {
     width: 75%;
     margin: 0 auto;
     padding: variables.$wrapper-home;
