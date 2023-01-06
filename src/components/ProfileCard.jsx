@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import user1 from "../assets/users/user1.jpg";
 import user2 from "../assets/users/user2.jpg";
 
-const Profile = ({ id, firstName }) => {
+const ProfileCard = ({ id, firstName }) => {
     return (
         <div className="profile-card">
             <Link to={"/dashboard/" + id} className="profile-card__link">
@@ -17,4 +17,4 @@ const Profile = ({ id, firstName }) => {
     );
 };
 
-export default Profile;
+export default ProfileCard;
