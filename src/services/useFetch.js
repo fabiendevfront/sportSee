@@ -3,7 +3,7 @@ import { getUrl, getDataModel } from "../business/utils";
 import { online } from "../business/utils";
 
 export const useFetch = (category, id) => {
-    const [data, setData] = useState(null);
+    const [dataModel, setDataModel] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const url = getUrl(online, category, id);
@@ -16,9 +16,8 @@ export const useFetch = (category, id) => {
         const getData = async () => {
             try {
                 const response = await fetch(url);
-                const data = await response.json();
-                const getModel = getDataModel(data, category);
-                setData(getModel);
+                const getModel = getDataModel(await response.json(), category);
+                setDataModel(getModel);
             } catch (error) {
                 console.error(error);
                 setError(true);
@@ -29,5 +28,5 @@ export const useFetch = (category, id) => {
         getData();
     }, [category, id, url]);
 
-    return { data, loading, error };
+    return { dataModel, loading, error };
 };

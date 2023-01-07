@@ -4,7 +4,7 @@ import  ActivityModel  from "../models/ActivityModel";
 import  AverageModel  from "../models/AverageModel";
 import  PerformanceModel from "../models/PerformanceModel";
 
-export const online = false;
+export const online = true;
 
 export const getUrl = (online, category, id) => {
     let baseUrl = "";
@@ -42,16 +42,16 @@ export const getUrl = (online, category, id) => {
     }
 };
 
-export const getDataModel = (data, category) => {
+export const getDataModel = (dataModel, category) => {
     switch (category) {
     case "main":
-        return new MainModel(data);
+        return new MainModel(dataModel);
     case "activity":
-        return new ActivityModel(data);
+        return new ActivityModel(dataModel.data.sessions).dayActivity();
     case "average":
-        return new AverageModel(data);
+        return new AverageModel(dataModel);
     case "performance":
-        return new PerformanceModel(data);
+        return new PerformanceModel(dataModel);
     default:
         console.error("La categorie est inexistante");
         return;

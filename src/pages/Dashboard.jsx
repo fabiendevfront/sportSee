@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../services/useFetch.js";
-import BarChartComponent from "../components/charts/BarChart";
+import BarChartComponent from "../components/charts/BarChartComp";
 
 const Dashboard = () => {
     const [dataUser, setDataUser] = useState(null);
     const { id } = useParams();
-    const { data } = useFetch("main", id);
+    const { dataModel } = useFetch("main", id);
 
     useEffect(() => {
-        setDataUser(data);
-    }, [data]);
+        setDataUser(dataModel);
+    }, [dataModel]);
 
     return (
         <>

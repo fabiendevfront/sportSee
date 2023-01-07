@@ -8,9 +8,10 @@ class ActivityModel {
             const activityDays = [];
 
             for (let session of this.data) {
-                const [dd] = session.day.split("-");
+                const date = new Date(session.day);
+                const jour = date.getDate();
                 activityDays.push({
-                    day: `${dd.slice(1)}`,
+                    day: jour,
                     kilogram: session.kilogram,
                     calories: session.calories,
                 });
