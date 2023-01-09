@@ -1,0 +1,16 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/***********************/
+/* INFOSCARD COMPONENT */
+/**********************/
+
+.infoscard {
+    background-color: #fbfbfb;
+    width: 258px;
+    height: 124px;
+
+    h2 {
+        margin: 0;
+    }
+}

@@ -1,0 +1,58 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/**********************/
+/* BARCHART COMPONENT */
+/**********************/
+
+.barchart {
+    background-color: #fbfbfb;
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 24px;
+    }
+
+    &__title {
+        @include mixins.font-size(15px);
+        font-weight: 500;
+        margin: 0 0 0 32px;
+    }
+
+    &__infos {
+        display: flex;
+    }
+
+    &__legend {
+        @include mixins.font-size(14px);
+        font-weight: 500;
+        color: #74798C;
+        display: flex;
+        align-items: center;
+        margin: 0 32px 0 0;
+
+
+        &::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            margin-right: 10px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        &--black {
+            &::before {
+                background-color: variables.$black;
+            }
+        }
+
+        &--red {
+            &::before {
+                background-color: variables.$primary-color;
+            }
+
+        }
+    }
+}

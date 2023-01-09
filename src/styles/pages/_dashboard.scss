@@ -7,4 +7,63 @@
 
 .dashboard {
     padding: variables.$wrapper-dashboard;
+
+    &__head {
+        margin-bottom: 77px;
+    }
+
+    &__title {
+        @include mixins.font-size(48px);
+        font-weight: 500;
+        margin: 0 0 41px 0;
+    }
+
+    &__name {
+        color: variables.$primary-color;
+    }
+
+    &__subtitle {
+        @include mixins.font-size(18px);
+        margin: 0;
+    }
+
+    &__activity-tracking {
+        display: flex;
+        justify-content: space-between;
+        gap: 31px;
+    }
+
+    &__graphs {
+        flex-grow: 1;
+        min-width: 900px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    &__barchart {
+        width: 100%;
+    }
+
+    &__stats {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    &__linechart {
+        width: 33%;
+    }
+
+    &__radarchart {
+        width: 33%;
+    }
+
+    &__piechart {
+        width: 33%;
+    }
+
+    &__infos {
+        width: 258px;
+    }
 }

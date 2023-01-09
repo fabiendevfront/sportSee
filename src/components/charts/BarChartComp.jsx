@@ -15,10 +15,10 @@ const BarChartComponent = ({ id }) => {
             {activity ? (
                 <div className="barchart">
                     <div className="barchart__head">
-                        <div className="barchart__title ">Activité quotidienne</div>
-                        <div className="barchart__info">
-                            <p>Poids (kg)</p>
-                            <p>Calories brûlées (kCal)</p>
+                        <h3 className="barchart__title">Activité quotidienne</h3>
+                        <div className="barchart__infos">
+                            <p className="barchart__legend barchart__legend--black">Poids (kg)</p>
+                            <p className="barchart__legend barchart__legend--red">Calories brûlées (kCal)</p>
                         </div>
                     </div>
                     <ResponsiveContainer aspect={2.5}>
@@ -36,6 +36,7 @@ const BarChartComponent = ({ id }) => {
                             />
                             <XAxis
                                 dataKey="day"
+                                stroke="#9B9EAC"
                                 tickLine={false}
                                 tick={{ fontSize: 14, fontWeight: 500 }}
                                 dy={10}
@@ -44,8 +45,10 @@ const BarChartComponent = ({ id }) => {
                                 yAxisId="kg"
                                 dataKey="kilogram"
                                 orientation="right"
+                                stroke="#9B9EAC"
                                 axisLine={false}
                                 tickLine={false}
+                                tick={{ fontSize: 14, fontWeight: 500 }}
                                 tickCount={3}
                                 domain={["dataMin -1", "dataMax"]}
                             />
@@ -53,6 +56,7 @@ const BarChartComponent = ({ id }) => {
                                 yAxisId="cal"
                                 dataKey="calories"
                                 orientation="left"
+                                stroke="#9B9EAC"
                                 axisLine={false}
                                 tickLine={false}
                                 hide
@@ -62,14 +66,14 @@ const BarChartComponent = ({ id }) => {
                                 yAxisId="kg"
                                 dataKey="kilogram"
                                 maxBarSize={8}
-                                fill={"#00000"}
+                                fill="#00000"
                                 radius={[50, 50, 0, 0]}
                             />
                             <Bar
                                 yAxisId="cal"
                                 dataKey="calories"
                                 maxBarSize={8}
-                                fill={"#00000"}
+                                fill="#FF0101"
                                 radius={[50, 50, 0, 0]}
                             />
                         </BarChart>

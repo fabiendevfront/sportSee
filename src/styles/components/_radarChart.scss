@@ -1,0 +1,12 @@
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+/*************************/
+/* RADARCHART COMPONENT */
+/************************/
+
+.radarchart {
+    background-color: variables.$black;
+    width: 100%;
+    height: 263px;
+}

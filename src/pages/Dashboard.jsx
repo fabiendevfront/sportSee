@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../services/useFetch.js";
 import BarChartComponent from "../components/charts/BarChartComp";
+import LineChartComp from "../components/charts/LineChartComp.jsx";
+import RadarChartComp from "../components/charts/RadarChartComp.jsx";
+import PieChartComp from "../components/charts/PieChartComp.jsx";
+import InfosCard from "../components/InfosCard";
 
 const Dashboard = () => {
     const [dataUser, setDataUser] = useState(null);
@@ -16,9 +20,31 @@ const Dashboard = () => {
         <>
             {dataUser ? (
                 <div className="dashboard">
-                    <h2>Bonjour {dataUser.firstName}</h2>
-                    <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
-                    <BarChartComponent id={id} />
+                    <div className="dashboard__head">
+                        <h2 className="dashboard__title">Bonjour <span className="dashboard__name">{dataUser.firstName}</span></h2>
+                        <p className="dashboard__subtitle">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+                    </div>
+                    <div className="dashboard__activity-tracking">
+                        <div className="dashboard__graphs">
+                            <div className="dashboard__barchart">
+                                <BarChartComponent id={id} />
+                            </div>
+                            <div className="dashboard__stats">
+                                <div className="dashboard__linechart">
+                                    <LineChartComp id={id} />
+                                </div>
+                                <div className="dashboard__radarchart">
+                                    <RadarChartComp id={id} />
+                                </div>
+                                <div className="dashboard__piechart">
+                                    <PieChartComp id={id} />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="dashboard__infos">
+                            <InfosCard />
+                        </div>
+                    </div>
                 </div>
             ) : (
                 <span>Erreur de connexion à la base de données</span>

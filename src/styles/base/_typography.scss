@@ -9,7 +9,7 @@ body {
     @include mixins.font-size(18px);
     font-weight: 500;
     line-height: 1.5;
-    color: variables.$primary-color;
+    color: variables.$black;
 }
 
 a {
