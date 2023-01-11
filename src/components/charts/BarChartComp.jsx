@@ -1,4 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
 
@@ -61,10 +62,13 @@ const BarChartComponent = ({ id }) => {
                                 tickLine={false}
                                 hide
                             />
-                            <Tooltip />
+                            <Tooltip
+                                content={<CustomizedTooltip />}
+                            />
                             <Bar
                                 yAxisId="kg"
                                 dataKey="kilogram"
+                                unit="kg"
                                 maxBarSize={8}
                                 fill="#00000"
                                 radius={[50, 50, 0, 0]}
@@ -72,6 +76,7 @@ const BarChartComponent = ({ id }) => {
                             <Bar
                                 yAxisId="cal"
                                 dataKey="calories"
+                                unit="Kcal"
                                 maxBarSize={8}
                                 fill="#FF0101"
                                 radius={[50, 50, 0, 0]}

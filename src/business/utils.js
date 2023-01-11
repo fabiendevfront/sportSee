@@ -47,9 +47,9 @@ export const getDataModel = (dataModel, category) => {
     case "main":
         return new MainModel(dataModel);
     case "activity":
-        return new ActivityModel(dataModel.data.sessions).dayActivity();
+        return new ActivityModel(dataModel.data.sessions).getActivities();
     case "average":
-        return new AverageModel(dataModel);
+        return new AverageModel(dataModel.data.sessions).getSessions();
     case "performance":
         return new PerformanceModel(dataModel);
     default:

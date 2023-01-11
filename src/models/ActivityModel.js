@@ -3,7 +3,7 @@ class ActivityModel {
         this.data = apiData;
     }
 
-    dayActivity() {
+    getActivities() {
         if (this.data) {
             const activityDays = [];
 

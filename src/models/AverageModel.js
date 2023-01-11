@@ -1,46 +1,28 @@
 class AverageModel {
     constructor(apiData) {
         this.data = apiData;
+        console.log(this.data);
     }
 
-    sessions() {
-        let averageSessions = [
-            {
-                day: "L",
-                sessionLength: 0,
-            },
-            {
-                day: "M",
-                sessionLength: 0,
-            },
-            {
-                day: "M",
-                sessionLength: 0,
-            },
-            {
-                day: "J",
-                sessionLength: 0,
-            },
-            {
-                day: "V",
-                sessionLength: 0,
-            },
-            {
-                day: "S",
-                sessionLength: 0,
-            },
-            {
-                day: "D",
-                sessionLength: 0,
-            },
-        ];
+    getSessions() {
+        const averageArray = [];
+        const dayLetter = {
+            1: "L",
+            2: "M",
+            3: "M",
+            4: "J",
+            5: "V",
+            6: "S",
+            7: "D"
+        };
 
-        const average = averageSessions;
-        for (let i in this.data) {
-            average[i].sessionLength = this.data[i].sessionLength;
-        }
-
-        return average;
+        this.data.forEach(session => {
+            averageArray.push({
+                day: dayLetter[session.day],
+                sessionLength: session.sessionLength
+            });
+        });
+        return averageArray;
     }
 }
 
