@@ -1,7 +1,6 @@
 class AverageModel {
     constructor(apiData) {
         this.data = apiData;
-        console.log(this.data);
     }
 
     getSessions() {

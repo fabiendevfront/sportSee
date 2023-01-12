@@ -16,7 +16,8 @@ export const useFetch = (category, id) => {
         const getData = async () => {
             try {
                 const response = await fetch(url);
-                const getModel = getDataModel(await response.json(), category);
+                const data = await response.json();
+                const getModel = getDataModel(data, category);
                 setDataModel(getModel);
             } catch (error) {
                 console.error(error);

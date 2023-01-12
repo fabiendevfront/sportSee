@@ -1,5 +1,5 @@
 //MODELS
-import  MainModel from "../models/MainModel";
+import  UserModel from "../models/UserModel";
 import  ActivityModel  from "../models/ActivityModel";
 import  AverageModel  from "../models/AverageModel";
 import  PerformanceModel from "../models/PerformanceModel";
@@ -13,7 +13,7 @@ export const getUrl = (online, category, id) => {
         baseUrl = "http://localhost:3000/user/";
 
         switch (category) {
-        case "main" :
+        case "user" :
             return `${baseUrl}${id}`;
         case "activity" :
             return `${baseUrl}${id}/activity`;
@@ -21,6 +21,8 @@ export const getUrl = (online, category, id) => {
             return `${baseUrl}${id}/average-sessions`;
         case "performance" :
             return `${baseUrl}${id}/performance`;
+        case "score" :
+            return `${baseUrl}${id}`;
         default :
             return null;
         }
@@ -28,7 +30,7 @@ export const getUrl = (online, category, id) => {
         baseUrl = "/mock/";
 
         switch (category) {
-        case "main" :
+        case "user" :
             return `${baseUrl}${id}/user.json`;
         case "activity" :
             return `${baseUrl}${id}/activity.json`;
@@ -36,6 +38,8 @@ export const getUrl = (online, category, id) => {
             return `${baseUrl}${id}/average.json`;
         case "performance" :
             return `${baseUrl}${id}/performance.json`;
+        case "score" :
+            return `${baseUrl}${id}/user.json`;
         default :
             return null;
         }
@@ -44,14 +48,18 @@ export const getUrl = (online, category, id) => {
 
 export const getDataModel = (dataModel, category) => {
     switch (category) {
-    case "main":
-        return new MainModel(dataModel);
+    case "user":
+        return new UserModel(dataModel.data);
     case "activity":
         return new ActivityModel(dataModel.data.sessions).getActivities();
     case "average":
         return new AverageModel(dataModel.data.sessions).getSessions();
     case "performance":
-        return new PerformanceModel(dataModel);
+        return new PerformanceModel(dataModel.data).getPerformance();
+    case "score":
+        return new UserModel(dataModel.data).getScore();
+    case "nutritional":
+        return new UserModel(dataModel.data).getNutritional();
     default:
         console.error("La categorie est inexistante");
         return;

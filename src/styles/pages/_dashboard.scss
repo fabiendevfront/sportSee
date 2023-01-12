@@ -6,16 +6,21 @@
 /***********************/
 
 .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 77px;
     padding: variables.$wrapper-dashboard;
 
     &__head {
-        margin-bottom: 77px;
+        display: flex;
+        flex-direction: column;
+        gap: 41px;
     }
 
     &__title {
         @include mixins.font-size(48px);
         font-weight: 500;
-        margin: 0 0 41px 0;
+        margin: 0;
     }
 
     &__name {
@@ -59,11 +64,20 @@
         width: 33%;
     }
 
-    &__piechart {
+    &__radialchart {
         width: 33%;
     }
 
-    &__infos {
+    &__nutritional {
         width: 258px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 39px;
+
+        .nutritional-card {
+            width: 100%;
+            height: 124px;
+        }
     }
 }
