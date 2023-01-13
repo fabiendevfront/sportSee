@@ -5,7 +5,7 @@ import { useFetch } from "../../services/useFetch.js";
 
 const LineChartComp = ({ id }) => {
     const [average, setAverage] = useState(null);
-    const { dataModel } = useFetch("average", id);
+    const { dataModel, loading, error } = useFetch("average", id);
 
     useEffect(() => {
         setAverage(dataModel);
@@ -13,7 +13,11 @@ const LineChartComp = ({ id }) => {
 
     return (
         <>
-            {average ? (
+            {loading ? (
+                <span>Chargement des données...</span >
+            ) : error && !loading ? (
+                <span>Erreur lors du chargement des données</span>
+            ) : average ? (
                 <div className="linechart">
                     <h3 className="linechart__title">Durée moyenne des <br />sessions</h3>
                     <ResponsiveContainer width="100%" height="100%" className="container">
@@ -64,9 +68,8 @@ const LineChartComp = ({ id }) => {
                         </LineChart>
                     </ResponsiveContainer>
                 </div>) : (
-                <span>Loading</span>
+                <span>Aucune session disponible</span>
             )}
-
         </>
     );
 };

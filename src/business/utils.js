@@ -6,6 +6,8 @@ import  PerformanceModel from "../models/PerformanceModel";
 
 export const online = true;
 
+export const validIds = ["12", "18"];
+
 export const getUrl = (online, category, id) => {
     let baseUrl = "";
 

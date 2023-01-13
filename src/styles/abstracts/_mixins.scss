@@ -26,3 +26,10 @@
         @content;
     }
 }
+
+// 2. Contain media queries for small screen
+@mixin small-break {
+    @media screen and (max-width: map-get(variables.$breakpoints, small)) {
+        @content;
+    }
+}

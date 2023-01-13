@@ -2,10 +2,9 @@ import { ResponsiveContainer, RadialBarChart, RadialBar } from "recharts";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
 
-
 const RadialChartComp = ({ id }) => {
     const [score, setScore] = useState(null);
-    const { dataModel } = useFetch("score", id);
+    const { dataModel, loading, error } = useFetch("score", id);
 
     useEffect(() => {
         setScore(dataModel);
@@ -13,7 +12,11 @@ const RadialChartComp = ({ id }) => {
 
     return (
         <>
-            {score ? (
+            {loading ? (
+                <span>Chargement des données...</span >
+            ) : error && !loading ? (
+                <span>Erreur lors du chargement des données</span>
+            ) : score ? (
                 <div className="radialchart">
                     <h3 className="radialchart__title">Score</h3>
                     <div className="radialchart__score">
@@ -36,7 +39,7 @@ const RadialChartComp = ({ id }) => {
                         </RadialBarChart>
                     </ResponsiveContainer>
                 </div>) : (
-                <span>Loading</span>
+                <span>Aucun score disponible</span>
             )}
         </>
     );

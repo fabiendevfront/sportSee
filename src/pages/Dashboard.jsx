@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useFetch } from "../services/useFetch.js";
 import BarChartComponent from "../components/charts/BarChartComp";
 import LineChartComp from "../components/charts/LineChartComp";
@@ -10,8 +10,20 @@ import NutritionalCard from "../components/NutritionalCard";
 const Dashboard = () => {
     const [dataUser, setDataUser] = useState(null);
     const [nutritional, setNutritional] = useState(null);
+    const navigate = useNavigate();
     const { id } = useParams();
-    const { dataModel } = useFetch("user", id);
+    const idRef = useRef(id);
+
+    useEffect(() => {
+        if (id !== "12" && id !== "18") {
+            idRef.current = "12";
+            navigate("/error404");
+        } else {
+            idRef.current = id;
+        }
+    }, [id, navigate, idRef]);
+
+    const { dataModel, loading, error } = useFetch("user", idRef.current);
 
     useEffect(() => {
         if (dataModel) {
@@ -22,7 +34,11 @@ const Dashboard = () => {
 
     return (
         <>
-            {dataUser ? (
+            {loading ? (
+                <span>Chargement des données...</span >
+            ) : error && !loading ? (
+                <span>Erreur lors du chargement des données</span>
+            ) : dataUser ? (
                 <div className="dashboard">
                     <div className="dashboard__head">
                         <h2 className="dashboard__title">Bonjour <span className="dashboard__name">{dataUser.firstName}</span></h2>
@@ -53,16 +69,14 @@ const Dashboard = () => {
                                     ))}
                                 </>
                             ) : (
-                                <span>Erreur de connexion à la base de données</span>
+                                <span>Aucune information nutritionnelle disponible</span>
                             )}
 
                         </div>
                     </div>
-                </div>
-            ) : (
-                <span>Erreur de connexion à la base de données</span>
-            )
-            }
+                </div>) : (
+                <span>Le tableau de bord rencontre un problème</span>
+            )}
         </>
     );
 };

@@ -1,11 +1,11 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
 
 const BarChartComponent = ({ id }) => {
     const [activity, setActivity] = useState(null);
-    const { dataModel } = useFetch("activity", id);
+    const { dataModel, loading, error } = useFetch("activity", id);
 
     useEffect(() => {
         setActivity(dataModel);
@@ -13,7 +13,11 @@ const BarChartComponent = ({ id }) => {
 
     return (
         <>
-            {activity ? (
+            {loading ? (
+                <span>Chargement des données...</span >
+            ) : error && !loading ? (
+                <span>Erreur lors du chargement des données</span>
+            ) : activity ? (
                 <div className="barchart">
                     <div className="barchart__head">
                         <h3 className="barchart__title">Activité quotidienne</h3>
@@ -22,7 +26,7 @@ const BarChartComponent = ({ id }) => {
                             <p className="barchart__legend barchart__legend--red">Calories brûlées (kCal)</p>
                         </div>
                     </div>
-                    <ResponsiveContainer aspect={2.5}>
+                    <ResponsiveContainer aspect={3.5}>
                         <BarChart
                             data={activity}
                             margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
@@ -84,9 +88,8 @@ const BarChartComponent = ({ id }) => {
                         </BarChart>
                     </ResponsiveContainer>
                 </div>) : (
-                <span>Loading</span>
+                <span>Aucune activité disponible</span>
             )}
-
         </>
     );
 };

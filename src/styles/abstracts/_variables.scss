@@ -17,7 +17,8 @@ $black: #000000;
 /********/
 
 $wrapper-home: 158px 90px 0 90px;
-$wrapper-dashboard: 158px 90px 0 207px;
+$wrapper-dashboard: 130px 70px 30px 190px;
+$wrapper-dashboard-small: 130px 30px 15px 160px;
 
 
 /***************/
@@ -26,5 +27,6 @@ $wrapper-dashboard: 158px 90px 0 207px;
 
 // 1.Breakpoints map for responsive
 $breakpoints: (
-    medium: 1024px
+    medium: 1490px,
+    small: 1179px
 );

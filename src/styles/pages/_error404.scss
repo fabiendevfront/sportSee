@@ -13,6 +13,7 @@
 
     &__title {
         @include mixins.font-size(80px);
+        color: variables.$primary-color;
         font-weight: 700;
         line-height: 1.2;
         margin: 50px 0 70px 0;

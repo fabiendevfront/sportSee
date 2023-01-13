@@ -4,7 +4,7 @@ import { useFetch } from "../../services/useFetch.js";
 
 const RadarChartComp = ({ id }) => {
     const [performance, setPerformance] = useState(null);
-    const { dataModel } = useFetch("performance", id);
+    const { dataModel, loading, error } = useFetch("performance", id);
 
     useEffect(() => {
         setPerformance(dataModel);
@@ -12,7 +12,11 @@ const RadarChartComp = ({ id }) => {
 
     return (
         <>
-            {performance ? (
+            {loading ? (
+                <span>Chargement des données...</span >
+            ) : error && !loading ? (
+                <span>Erreur lors du chargement des données</span>
+            ) : performance ? (
                 <div className="radarchart">
                     <ResponsiveContainer width="100%" height="100%">
                         <RadarChart
@@ -38,8 +42,8 @@ const RadarChartComp = ({ id }) => {
                         </RadarChart>
                     </ResponsiveContainer>
                 </div>) : (
-                <span>Loading</span>
-            )};
+                <span>Aucune statisque disponible</span>
+            )}
         </>
     );
 };
