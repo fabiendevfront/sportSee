@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { getUrl, getDataModel } from "../business/utils";
+import { useNavigate } from "react-router-dom";
 import { online } from "../business/utils";
+import PropTypes from "prop-types";
 
 export const useFetch = (category, id) => {
     const [dataModel, setDataModel] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const navigate = useNavigate();
     const url = getUrl(online, category, id);
 
     useEffect(() => {
-        if (!url) {
+        if (!url || url === null) {
+            navigate("/error404");
             return;
         }
 
@@ -27,7 +31,16 @@ export const useFetch = (category, id) => {
             }
         };
         getData();
-    }, [category, id, url]);
+    }, [category, id, url, navigate]);
 
     return { dataModel, loading, error };
+};
+
+
+useFetch.propTypes = {
+    category: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired,
 };

@@ -2,6 +2,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "rec
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
+import PropTypes from "prop-types";
 
 const LineChartComp = ({ id }) => {
     const [average, setAverage] = useState(null);
@@ -72,6 +73,10 @@ const LineChartComp = ({ id }) => {
             )}
         </>
     );
+};
+
+LineChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
 };
 
 export default LineChartComp;

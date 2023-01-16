@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import user1 from "../assets/users/user1.jpg";
 import user2 from "../assets/users/user2.jpg";
+import PropTypes from "prop-types";
 
 const ProfileCard = ({ id, firstName }) => {
     return (
@@ -15,6 +16,11 @@ const ProfileCard = ({ id, firstName }) => {
             </Link>
         </div>
     );
+};
+
+ProfileCard.propTypes = {
+    id: PropTypes.number.isRequired,
+    firstName: PropTypes.string.isRequired,
 };
 
 export default ProfileCard;

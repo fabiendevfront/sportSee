@@ -1,6 +1,7 @@
 import { ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis } from "recharts";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
+import PropTypes from "prop-types";
 
 const RadarChartComp = ({ id }) => {
     const [performance, setPerformance] = useState(null);
@@ -46,6 +47,10 @@ const RadarChartComp = ({ id }) => {
             )}
         </>
     );
+};
+
+RadarChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
 };
 
 export default RadarChartComp;

@@ -4,14 +4,16 @@ import  ActivityModel  from "../models/ActivityModel";
 import  AverageModel  from "../models/AverageModel";
 import  PerformanceModel from "../models/PerformanceModel";
 
-export const online = true;
+export const online = false;
 
 export const validIds = ["12", "18"];
 
 export const getUrl = (online, category, id) => {
+    const idUser  = validIds.find(userId => userId === id);
     let baseUrl = "";
-
-    if (online) {
+    if (!idUser) {
+        return null;
+    } else if (online) {
         baseUrl = "http://localhost:3000/user/";
 
         switch (category) {

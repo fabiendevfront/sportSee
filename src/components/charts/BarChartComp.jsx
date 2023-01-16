@@ -2,8 +2,9 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Toolti
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
+import PropTypes from "prop-types";
 
-const BarChartComponent = ({ id }) => {
+const BarChartComp = ({ id }) => {
     const [activity, setActivity] = useState(null);
     const { dataModel, loading, error } = useFetch("activity", id);
 
@@ -94,4 +95,8 @@ const BarChartComponent = ({ id }) => {
     );
 };
 
-export default BarChartComponent;
+BarChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
+};
+
+export default BarChartComp;

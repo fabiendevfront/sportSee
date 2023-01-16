@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const CustomizedTooltip = ({ active, payload }) => {
     if (active && payload) {
         return (
@@ -8,6 +10,17 @@ const CustomizedTooltip = ({ active, payload }) => {
         );
     }
     return null;
+};
+
+CustomizedTooltip.propTypes = {
+    active: PropTypes.bool.isRequired,
+    payload: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string,
+            value: PropTypes.number,
+            unit: PropTypes.string
+        })
+    ).isRequired
 };
 
 export default CustomizedTooltip;

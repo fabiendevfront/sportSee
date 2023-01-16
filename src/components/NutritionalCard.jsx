@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import caloriesIcon from "../assets/nutritional/calories-icon.svg";
 import carbsIcon from "../assets/nutritional/carbs-icon.svg";
 import fatIcon from "../assets/nutritional/fat-icon.svg";
@@ -45,6 +46,11 @@ const NutritionalCard = ({ nutri, value }) => {
             </div>
         </div>
     );
+};
+
+NutritionalCard.propTypes = {
+    nutri: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired
 };
 
 export default NutritionalCard;

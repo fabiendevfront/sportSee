@@ -1,6 +1,7 @@
 import { ResponsiveContainer, RadialBarChart, RadialBar } from "recharts";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.js";
+import PropTypes from "prop-types";
 
 const RadialChartComp = ({ id }) => {
     const [score, setScore] = useState(null);
@@ -43,6 +44,10 @@ const RadialChartComp = ({ id }) => {
             )}
         </>
     );
+};
+
+RadialChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
 };
 
 export default RadialChartComp;
