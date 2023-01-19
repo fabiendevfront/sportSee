@@ -1,3 +1,7 @@
+/**
+ * Modeling class for Performance data
+ * @param {Object} - apiData
+ */
 class PerformanceModel {
     constructor(apiData) {
         this.allData = apiData;
@@ -5,6 +9,10 @@ class PerformanceModel {
         this.kind = apiData.kind;
     }
 
+    /**
+    * Get performance data for RadarChart
+    * @returns {Array.<Object>} performanceArray
+    */
     getPerformance() {
         const performanceArray = [];
         const translateKind = {

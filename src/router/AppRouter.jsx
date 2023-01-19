@@ -4,6 +4,11 @@ import Dashboard from "../pages/Dashboard";
 import Error404 from "../pages/Error404";
 import ComingSoon from "../pages/ComingSoon";
 
+/**
+* AppRouter component manage routing in app, that renders different routes and corresponding components.
+* @component
+* @returns {JSX.Element}
+*/
 const AppRouter = () => {
     return (
         <Routes>

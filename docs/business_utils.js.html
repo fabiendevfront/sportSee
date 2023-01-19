@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: business/utils.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: business/utils.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import  UserModel from "../models/UserModel";
+import  ActivityModel  from "../models/ActivityModel";
+import  AverageModel  from "../models/AverageModel";
+import  PerformanceModel from "../models/PerformanceModel";
+
+// A boolean constant for fetch on mock or Api in useFetch
+export const online = false;
+
+// Array of the users ids
+export const validIds = ["12", "18"];
+
+/**
+ * Checks if the id is valid, and retrieves the correct path depending if it is online or not.
+ * @function
+ * @param {boolean} online
+ * @param {string} category - "user", "activity", "average", "performance", "score"
+ * @param {string} id - User id
+ * @returns {string} Path
+ */
+export const getUrl = (online, category, id) => {
+    const idUser  = validIds.find(userId => userId === id);
+    let baseUrl = "";
+    if (!idUser) {
+        return null;
+    } else if (online) {
+        baseUrl = "http://localhost:3000/user/";
+
+        switch (category) {
+        case "user" :
+            return `${baseUrl}${id}`;
+        case "activity" :
+            return `${baseUrl}${id}/activity`;
+        case "average" :
+            return `${baseUrl}${id}/average-sessions`;
+        case "performance" :
+            return `${baseUrl}${id}/performance`;
+        case "score" :
+            return `${baseUrl}${id}`;
+        default :
+            return null;
+        }
+    } else {
+        baseUrl = "/mock/";
+
+        switch (category) {
+        case "user" :
+            return `${baseUrl}${id}/user.json`;
+        case "activity" :
+            return `${baseUrl}${id}/activity.json`;
+        case "average" :
+            return `${baseUrl}${id}/average.json`;
+        case "performance" :
+            return `${baseUrl}${id}/performance.json`;
+        case "score" :
+            return `${baseUrl}${id}/user.json`;
+        default :
+            return null;
+        }
+    }
+};
+
+/**
+ * Returns the correct data model depending on the category of data.
+ * @function
+ * @param {Object} dataModel - Api Data
+ * @param {string} category - "user", "activity", "average", "performance", "score"
+ * @returns {Object} - A data model
+ */
+export const getDataModel = (dataModel, category) => {
+    switch (category) {
+    case "user":
+        return new UserModel(dataModel.data);
+    case "activity":
+        return new ActivityModel(dataModel.data.sessions).getActivities();
+    case "average":
+        return new AverageModel(dataModel.data.sessions).getSessions();
+    case "performance":
+        return new PerformanceModel(dataModel.data).getPerformance();
+    case "score":
+        return new UserModel(dataModel.data).getScore();
+    case "nutritional":
+        return new UserModel(dataModel.data).getNutritional();
+    default:
+        console.error("La categorie est inexistante");
+        return;
+    }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivityModel.html">ActivityModel</a></li><li><a href="AverageModel.html">AverageModel</a></li><li><a href="PerformanceModel.html">PerformanceModel</a></li><li><a href="UserModel.html">UserModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#AppRouter">AppRouter</a></li><li><a href="global.html#BarChartComp">BarChartComp</a></li><li><a href="global.html#ComingSoon">ComingSoon</a></li><li><a href="global.html#CustomizedTooltip">CustomizedTooltip</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LineChartComp">LineChartComp</a></li><li><a href="global.html#NutritionalCard">NutritionalCard</a></li><li><a href="global.html#ProfileCard">ProfileCard</a></li><li><a href="global.html#RadarChartComp">RadarChartComp</a></li><li><a href="global.html#RadialChartComp">RadialChartComp</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#getDataModel">getDataModel</a></li><li><a href="global.html#getUrl">getUrl</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 19 2023 05:33:45 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

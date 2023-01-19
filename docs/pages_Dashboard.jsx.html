@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/Dashboard.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/Dashboard.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../services/useFetch.jsx";
+import BarChartComp from "../components/charts/BarChartComp";
+import LineChartComp from "../components/charts/LineChartComp";
+import RadarChartComp from "../components/charts/RadarChartComp";
+import RadialChartComp from "../components/charts/RadialChartComp";
+import NutritionalCard from "../components/NutritionalCard";
+
+/**
+* Component for Dashboard page
+* @component
+* @returns {JSX.Element}
+*/
+const Dashboard = () => {
+    const [dataUser, setDataUser] = useState(null);
+    const [nutritional, setNutritional] = useState(null);
+    const { id } = useParams();
+    const { dataModel, loading, error } = useFetch("user", id);
+
+    useEffect(() => {
+        if (dataModel) {
+            setDataUser(dataModel);
+            setNutritional(dataModel.getNutritional());
+        }
+    }, [dataModel]);
+
+    return (
+        &lt;>
+            {loading ? (
+                &lt;span>Chargement des données...&lt;/span >
+            ) : error &amp;&amp; !loading ? (
+                &lt;span>Erreur lors du chargement des données&lt;/span>
+            ) : dataUser ? (
+                &lt;div className="dashboard">
+                    &lt;div className="dashboard__head">
+                        &lt;h2 className="dashboard__title">Bonjour &lt;span className="dashboard__name">{dataUser.firstName}&lt;/span>&lt;/h2>
+                        &lt;p className="dashboard__subtitle">Félicitation ! Vous avez explosé vos objectifs hier 👏&lt;/p>
+                    &lt;/div>
+                    &lt;div className="dashboard__activity-tracking">
+                        &lt;div className="dashboard__graphs">
+                            &lt;div className="dashboard__barchart">
+                                &lt;BarChartComp id={id} />
+                            &lt;/div>
+                            &lt;div className="dashboard__stats">
+                                &lt;div className="dashboard__linechart">
+                                    &lt;LineChartComp id={id} />
+                                &lt;/div>
+                                &lt;div className="dashboard__radarchart">
+                                    &lt;RadarChartComp id={id} />
+                                &lt;/div>
+                                &lt;div className="dashboard__radialchart">
+                                    &lt;RadialChartComp id={id} />
+                                &lt;/div>
+                            &lt;/div>
+                        &lt;/div>
+                        &lt;div className="dashboard__nutritional">
+                            {nutritional ? (
+                                &lt;>
+                                    {Object.entries(nutritional).map(([key, value]) => (
+                                        &lt;NutritionalCard key={key} nutri={key} value={value} />
+                                    ))}
+                                &lt;/>
+                            ) : (
+                                &lt;span>Aucune information nutritionnelle disponible&lt;/span>
+                            )}
+
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>) : (
+                &lt;span>Le tableau de bord rencontre un problème&lt;/span>
+            )}
+        &lt;/>
+    );
+};
+
+export default Dashboard;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivityModel.html">ActivityModel</a></li><li><a href="AverageModel.html">AverageModel</a></li><li><a href="PerformanceModel.html">PerformanceModel</a></li><li><a href="UserModel.html">UserModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#AppRouter">AppRouter</a></li><li><a href="global.html#BarChartComp">BarChartComp</a></li><li><a href="global.html#ComingSoon">ComingSoon</a></li><li><a href="global.html#CustomizedTooltip">CustomizedTooltip</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LineChartComp">LineChartComp</a></li><li><a href="global.html#NutritionalCard">NutritionalCard</a></li><li><a href="global.html#ProfileCard">ProfileCard</a></li><li><a href="global.html#RadarChartComp">RadarChartComp</a></li><li><a href="global.html#RadialChartComp">RadialChartComp</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#getDataModel">getDataModel</a></li><li><a href="global.html#getUrl">getUrl</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 19 2023 05:33:45 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

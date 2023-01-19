@@ -1,13 +1,22 @@
-//MODELS
 import  UserModel from "../models/UserModel";
 import  ActivityModel  from "../models/ActivityModel";
 import  AverageModel  from "../models/AverageModel";
 import  PerformanceModel from "../models/PerformanceModel";
 
+// A boolean constant for fetch on mock or Api in useFetch
 export const online = false;
 
+// Array of the users ids
 export const validIds = ["12", "18"];
 
+/**
+ * Checks if the id is valid, and retrieves the correct path depending if it is online or not.
+ * @function
+ * @param {boolean} online
+ * @param {string} category - "user", "activity", "average", "performance", "score"
+ * @param {string} id - User id
+ * @returns {string} Path
+ */
 export const getUrl = (online, category, id) => {
     const idUser  = validIds.find(userId => userId === id);
     let baseUrl = "";
@@ -50,6 +59,13 @@ export const getUrl = (online, category, id) => {
     }
 };
 
+/**
+ * Returns the correct data model depending on the category of data.
+ * @function
+ * @param {Object} dataModel - Api Data
+ * @param {string} category - "user", "activity", "average", "performance", "score"
+ * @returns {Object} - A data model
+ */
 export const getDataModel = (dataModel, category) => {
     switch (category) {
     case "user":

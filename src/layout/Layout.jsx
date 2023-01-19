@@ -3,6 +3,13 @@ import Sidebar from "../layout/Sidebar";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
+/**
+ * The Layout component returns a JSX element that contains Header and/or Sidebar components and main.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {Object} props.children - The content to be rendered inside the Layout component
+ * @returns {JSX.Element}
+ */
 const Layout = ({ children }) => {
     const location = useLocation();
     return (

@@ -1,8 +1,15 @@
 import { ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis } from "recharts";
 import { useEffect, useState } from "react";
-import { useFetch } from "../../services/useFetch.js";
+import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
+/**
+ * Component displaying a RadarChart of a user's performance data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
 const RadarChartComp = ({ id }) => {
     const [performance, setPerformance] = useState(null);
     const { dataModel, loading, error } = useFetch("performance", id);

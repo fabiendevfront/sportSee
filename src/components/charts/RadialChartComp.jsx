@@ -1,8 +1,15 @@
 import { ResponsiveContainer, RadialBarChart, RadialBar } from "recharts";
 import { useEffect, useState } from "react";
-import { useFetch } from "../../services/useFetch.js";
+import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
+/**
+ * Component displaying a RadialChart of a user's score data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
 const RadialChartComp = ({ id }) => {
     const [score, setScore] = useState(null);
     const { dataModel, loading, error } = useFetch("score", id);

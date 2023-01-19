@@ -1,8 +1,16 @@
+/**
+ * Modeling class for Average data
+ * @param {Object} - apiData
+ */
 class AverageModel {
     constructor(apiData) {
         this.data = apiData;
     }
 
+    /**
+    * Get sessions data for LineChart
+    * @returns {Array.<Object>} averageArray
+    */
     getSessions() {
         const averageArray = [];
         const dayLetter = {

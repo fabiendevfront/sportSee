@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 
+/**
+* Component for Coming Soon page
+* @component
+* @returns {JSX.Element}
+*/
 const ComingSoon = () => {
     return (
         <div className="coming-soon">

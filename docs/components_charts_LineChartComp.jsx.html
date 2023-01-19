@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/charts/LineChartComp.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/charts/LineChartComp.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import CustomizedTooltip from "./CustomizedTooltip.jsx";
+import { useEffect, useState } from "react";
+import { useFetch } from "../../services/useFetch.jsx";
+import PropTypes from "prop-types";
+
+/**
+ * Component displaying a LineChart of a user's average session data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
+const LineChartComp = ({ id }) => {
+    const [average, setAverage] = useState(null);
+    const { dataModel, loading, error } = useFetch("average", id);
+
+    useEffect(() => {
+        setAverage(dataModel);
+    }, [dataModel]);
+
+    return (
+        &lt;>
+            {loading ? (
+                &lt;span>Chargement des données...&lt;/span >
+            ) : error &amp;&amp; !loading ? (
+                &lt;span>Erreur lors du chargement des données&lt;/span>
+            ) : average ? (
+                &lt;div className="linechart">
+                    &lt;h3 className="linechart__title">Durée moyenne des &lt;br />sessions&lt;/h3>
+                    &lt;ResponsiveContainer width="100%" height="100%" className="container">
+                        &lt;LineChart
+                            data={average}
+                            height={268}
+                            margin={{ top: 50, right: 20, bottom: 5, left: 20 }}
+                            onMouseMove={(e) => {
+                                const container = document.getElementsByClassName("container")[0];
+                                if (e.isTooltipActive) {
+                                    const widthFocus = container.clientWidth;
+                                    const pourcentage = Math.round((e.activeCoordinate.x / widthFocus) * 100);
+                                    container.style.background = `linear-gradient(to right, rgba(255,0,0,1) ${pourcentage}%, rgba(0,0,0,0.1) ${pourcentage}%, rgba(0,0,0,0.1) 100%)`;
+                                } else {
+                                    container.style.background = "rgba(255,0,0,1)";
+                                }
+                            }}
+                        >
+                            &lt;XAxis
+                                dataKey="day"
+                                stroke="none"
+                                tick={{ fill: "rgba(255, 255, 255, 0.5)" }}
+                            />
+                            &lt;YAxis
+                                dataKey="sessionLength"
+                                hide={true}
+                            />
+                            &lt;Tooltip
+                                content={&lt;CustomizedTooltip />}
+                                cursor={{
+                                    stroke: "rgba(0, 0, 0, 0)",
+                                    strokeWidth: 32,
+                                }}
+                            />
+                            &lt;Line
+                                dataKey="sessionLength"
+                                unit="min"
+                                type="monotone"
+                                stroke="rgba(255, 255, 255, 0.5)"
+                                strokeWidth={3}
+                                dot={false}
+                                activeDot={{
+                                    stroke: "rgba(255, 255, 255, 0.5)",
+                                    strokeWidth: 10,
+                                    r: 5,
+                                }}
+                            />
+                        &lt;/LineChart>
+                    &lt;/ResponsiveContainer>
+                &lt;/div>) : (
+                &lt;span>Aucune session disponible&lt;/span>
+            )}
+        &lt;/>
+    );
+};
+
+LineChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
+};
+
+export default LineChartComp;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivityModel.html">ActivityModel</a></li><li><a href="AverageModel.html">AverageModel</a></li><li><a href="PerformanceModel.html">PerformanceModel</a></li><li><a href="UserModel.html">UserModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#AppRouter">AppRouter</a></li><li><a href="global.html#BarChartComp">BarChartComp</a></li><li><a href="global.html#ComingSoon">ComingSoon</a></li><li><a href="global.html#CustomizedTooltip">CustomizedTooltip</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LineChartComp">LineChartComp</a></li><li><a href="global.html#NutritionalCard">NutritionalCard</a></li><li><a href="global.html#ProfileCard">ProfileCard</a></li><li><a href="global.html#RadarChartComp">RadarChartComp</a></li><li><a href="global.html#RadialChartComp">RadialChartComp</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#getDataModel">getDataModel</a></li><li><a href="global.html#getUrl">getUrl</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 19 2023 05:33:45 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

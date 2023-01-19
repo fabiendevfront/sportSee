@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import ProfileCard from "../components/ProfileCard";
 
-
+/**
+* Component for Homepage
+* @component
+* @returns {JSX.Element}
+*/
 const Home = () => {
-    /* Create a State Hook */
     const [data, setData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);

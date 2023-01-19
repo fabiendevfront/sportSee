@@ -1,5 +1,13 @@
 import PropTypes from "prop-types";
 
+/**
+ * Tooltip component displaying values in BarChart and LineChart.
+ * @component
+ * @param {Object} props - Component's props.
+ * @param {boolean} props.active - Tooltip is active or not.
+ * @param {Array} props.payload - An array of data for the tooltip to display.
+ * @returns {JSX.Element}
+ */
 const CustomizedTooltip = ({ active, payload }) => {
     if (active && payload) {
         return (
@@ -13,14 +21,14 @@ const CustomizedTooltip = ({ active, payload }) => {
 };
 
 CustomizedTooltip.propTypes = {
-    active: PropTypes.bool.isRequired,
+    active: PropTypes.bool,
     payload: PropTypes.arrayOf(
         PropTypes.shape({
             name: PropTypes.string,
             value: PropTypes.number,
             unit: PropTypes.string
         })
-    ).isRequired
+    )
 };
 
 export default CustomizedTooltip;

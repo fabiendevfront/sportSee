@@ -1,3 +1,7 @@
+/**
+ * Modeling class for User data
+ * @param {Object} - apiData
+ */
 class UserModel {
     constructor(apiData) {
         this.data = apiData;
@@ -5,6 +9,10 @@ class UserModel {
         this.nutritional = apiData.keyData;
     }
 
+    /**
+    * Get score data for RadialChart
+    * @returns {Array.<Object>} scoreArray
+    */
     getScore() {
         const scoreArray = [];
         let score = null;
@@ -28,6 +36,10 @@ class UserModel {
         return scoreArray;
     }
 
+    /**
+    * Get nutritinal data for NutritionnalCard
+    * @returns {Object} nutritionalItems
+    */
     getNutritional() {
         const nutritionalItems = {
             Calories: this.nutritional.calorieCount,

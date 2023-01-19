@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/charts/BarChartComp.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/charts/BarChartComp.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import CustomizedTooltip from "./CustomizedTooltip.jsx";
+import { useEffect, useState } from "react";
+import { useFetch } from "../../services/useFetch.jsx";
+import PropTypes from "prop-types";
+
+/**
+ * Component displaying a BarChart of a user's daily activity data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
+const BarChartComp = ({ id }) => {
+    const [activity, setActivity] = useState(null);
+    const { dataModel, loading, error } = useFetch("activity", id);
+
+    useEffect(() => {
+        setActivity(dataModel);
+    }, [dataModel]);
+
+    return (
+        &lt;>
+            {loading ? (
+                &lt;span>Chargement des données...&lt;/span >
+            ) : error &amp;&amp; !loading ? (
+                &lt;span>Erreur lors du chargement des données&lt;/span>
+            ) : activity ? (
+                &lt;div className="barchart">
+                    &lt;div className="barchart__head">
+                        &lt;h3 className="barchart__title">Activité quotidienne&lt;/h3>
+                        &lt;div className="barchart__infos">
+                            &lt;p className="barchart__legend barchart__legend--black">Poids (kg)&lt;/p>
+                            &lt;p className="barchart__legend barchart__legend--red">Calories brûlées (kCal)&lt;/p>
+                        &lt;/div>
+                    &lt;/div>
+                    &lt;ResponsiveContainer aspect={3.5}>
+                        &lt;BarChart
+                            data={activity}
+                            margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
+                            barGap={8}
+                            barCategoryGap="35%"
+                            height={200}
+                            width={300}
+                        >
+                            &lt;CartesianGrid
+                                strokeDasharray="3 3"
+                                vertical={false}
+                            />
+                            &lt;XAxis
+                                dataKey="day"
+                                stroke="#9B9EAC"
+                                tickLine={false}
+                                tick={{ fontSize: 14, fontWeight: 500 }}
+                                dy={10}
+                            />
+                            &lt;YAxis
+                                yAxisId="kg"
+                                dataKey="kilogram"
+                                orientation="right"
+                                stroke="#9B9EAC"
+                                axisLine={false}
+                                tickLine={false}
+                                tick={{ fontSize: 14, fontWeight: 500 }}
+                                tickCount={3}
+                                domain={["dataMin -1", "dataMax"]}
+                            />
+                            &lt;YAxis
+                                yAxisId="cal"
+                                dataKey="calories"
+                                orientation="left"
+                                stroke="#9B9EAC"
+                                axisLine={false}
+                                tickLine={false}
+                                hide
+                            />
+                            &lt;Tooltip
+                                content={&lt;CustomizedTooltip />}
+                            />
+                            &lt;Bar
+                                yAxisId="kg"
+                                dataKey="kilogram"
+                                unit="kg"
+                                maxBarSize={8}
+                                fill="#00000"
+                                radius={[50, 50, 0, 0]}
+                            />
+                            &lt;Bar
+                                yAxisId="cal"
+                                dataKey="calories"
+                                unit="Kcal"
+                                maxBarSize={8}
+                                fill="#FF0101"
+                                radius={[50, 50, 0, 0]}
+                            />
+                        &lt;/BarChart>
+                    &lt;/ResponsiveContainer>
+                &lt;/div>) : (
+                &lt;span>Aucune activité disponible&lt;/span>
+            )}
+        &lt;/>
+    );
+};
+
+BarChartComp.propTypes = {
+    id: PropTypes.string.isRequired,
+};
+
+export default BarChartComp;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ActivityModel.html">ActivityModel</a></li><li><a href="AverageModel.html">AverageModel</a></li><li><a href="PerformanceModel.html">PerformanceModel</a></li><li><a href="UserModel.html">UserModel</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#AppRouter">AppRouter</a></li><li><a href="global.html#BarChartComp">BarChartComp</a></li><li><a href="global.html#ComingSoon">ComingSoon</a></li><li><a href="global.html#CustomizedTooltip">CustomizedTooltip</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#Layout">Layout</a></li><li><a href="global.html#LineChartComp">LineChartComp</a></li><li><a href="global.html#NutritionalCard">NutritionalCard</a></li><li><a href="global.html#ProfileCard">ProfileCard</a></li><li><a href="global.html#RadarChartComp">RadarChartComp</a></li><li><a href="global.html#RadialChartComp">RadialChartComp</a></li><li><a href="global.html#Sidebar">Sidebar</a></li><li><a href="global.html#getDataModel">getDataModel</a></li><li><a href="global.html#getUrl">getUrl</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Jan 19 2023 05:33:45 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

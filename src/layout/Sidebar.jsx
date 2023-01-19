@@ -1,3 +1,7 @@
+/**
+ * The Sidebar component for Dashboard page.
+ * @returns {JSX.Element}
+ */
 const Sidebar = () => {
     return (
         <div className="sidebar">

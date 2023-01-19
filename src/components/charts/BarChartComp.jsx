@@ -1,9 +1,16 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
-import { useFetch } from "../../services/useFetch.js";
+import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
+/**
+ * Component displaying a BarChart of a user's daily activity data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
 const BarChartComp = ({ id }) => {
     const [activity, setActivity] = useState(null);
     const { dataModel, loading, error } = useFetch("activity", id);

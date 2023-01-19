@@ -1,9 +1,16 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { useEffect, useState } from "react";
-import { useFetch } from "../../services/useFetch.js";
+import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
+/**
+ * Component displaying a LineChart of a user's average session data.
+ * @component
+ * @param {Object} props - Component's props
+ * @param {string} props.id - The id of the user
+ * @returns {JSX.Element}
+ */
 const LineChartComp = ({ id }) => {
     const [average, setAverage] = useState(null);
     const { dataModel, loading, error } = useFetch("average", id);

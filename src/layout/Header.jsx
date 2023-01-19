@@ -1,6 +1,10 @@
 import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/logo.svg";
 
+/**
+ * The Header component returns JSX element and that contains Link and Navlink components.
+ * @returns {JSX.Element}
+ */
 const Header = () => {
     return (
         <div className="header">

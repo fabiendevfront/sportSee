@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useFetch } from "../services/useFetch.js";
+import { useFetch } from "../services/useFetch.jsx";
 import BarChartComp from "../components/charts/BarChartComp";
 import LineChartComp from "../components/charts/LineChartComp";
 import RadarChartComp from "../components/charts/RadarChartComp";
 import RadialChartComp from "../components/charts/RadialChartComp";
 import NutritionalCard from "../components/NutritionalCard";
 
+/**
+* Component for Dashboard page
+* @component
+* @returns {JSX.Element}
+*/
 const Dashboard = () => {
     const [dataUser, setDataUser] = useState(null);
     const [nutritional, setNutritional] = useState(null);

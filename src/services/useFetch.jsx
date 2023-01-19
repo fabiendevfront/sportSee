@@ -4,6 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { online } from "../business/utils";
 import PropTypes from "prop-types";
 
+/**
+* A custom hook for fetching data from a specified URL and updating the dataModel state.
+* @function
+* @param {string} category - Category of data.
+* @param {string} id - Id of the user.
+* @returns {{ dataModel: object | null, loading: boolean, error: boolean }} - Returns object with dataModel, loading and error.
+*/
 export const useFetch = (category, id) => {
     const [dataModel, setDataModel] = useState(null);
     const [loading, setLoading] = useState(true);
