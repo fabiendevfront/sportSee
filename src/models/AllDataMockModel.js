@@ -15,7 +15,6 @@ class AllDataMockModel {
      */
     constructor(apiData) {
         this.data = apiData;
-        console.log(this.data);
         this.users = apiData.user;
     }
 
