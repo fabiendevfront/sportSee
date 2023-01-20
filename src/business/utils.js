@@ -85,3 +85,20 @@ export const getDataModel = (dataModel, category) => {
         return;
     }
 };
+
+
+/**
+ * Changes the background color of a container element based on the position of the mouse pointer on a chart.
+ * @function
+ * @param {Object} e - Event object
+ */
+export const changeBgFocusChart = (e) => {
+    const container = document.getElementsByClassName("container")[0];
+    if (e.isTooltipActive) {
+        const widthFocus = container.clientWidth;
+        const pourcentage = Math.round((e.activeCoordinate.x / widthFocus) * 100);
+        container.style.background = `linear-gradient(to right, rgba(255,0,0,1) ${pourcentage}%, rgba(0,0,0,0.1) ${pourcentage}%, rgba(0,0,0,0.1) 100%)`;
+    } else {
+        container.style.background = "rgba(255,0,0,1)";
+    }
+};

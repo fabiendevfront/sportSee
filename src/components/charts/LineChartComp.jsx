@@ -1,5 +1,6 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
+import { changeBgFocusChart } from "../../business/utils.js";
 import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
@@ -33,16 +34,7 @@ const LineChartComp = ({ id }) => {
                             data={average}
                             height={268}
                             margin={{ top: 50, right: 20, bottom: 5, left: 20 }}
-                            onMouseMove={(e) => {
-                                const container = document.getElementsByClassName("container")[0];
-                                if (e.isTooltipActive) {
-                                    const widthFocus = container.clientWidth;
-                                    const pourcentage = Math.round((e.activeCoordinate.x / widthFocus) * 100);
-                                    container.style.background = `linear-gradient(to right, rgba(255,0,0,1) ${pourcentage}%, rgba(0,0,0,0.1) ${pourcentage}%, rgba(0,0,0,0.1) 100%)`;
-                                } else {
-                                    container.style.background = "rgba(255,0,0,1)";
-                                }
-                            }}
+                            onMouseMove={changeBgFocusChart}
                         >
                             <XAxis
                                 dataKey="day"
