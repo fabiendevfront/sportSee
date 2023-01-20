@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useFetchAllData } from "../services/useFetchAllData.jsx";
 import ProfileCard from "../components/ProfileCard";
 
 /**
@@ -8,40 +9,29 @@ import ProfileCard from "../components/ProfileCard";
 */
 const Home = () => {
     const [data, setData] = useState();
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    const { dataModel, loading, error } = useFetchAllData("all");
 
     useEffect(() => {
-        const getDataMock = async () => {
-            try {
-                const response = await fetch("/mock/mockData.json");
-                const users = await response.json();
-                setData(users);
-            } catch (error) {
-                console.error(error);
-                setError(true);
-            } finally {
-                setLoading(false);
-            }
-        };
-        getDataMock();
-    }, []);
+        if (dataModel) {
+            setData(dataModel);
+        }
+    }, [dataModel]);
 
     return (
         <>
             {loading ? (
-                <span>Chargement des données...</span >
+                <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
             ) : data ? (
                 <div className="home">
                     <div className="home__profiles">
-                        {data.user.map((profile) =>
-                            <ProfileCard key={profile.id} id={profile.id} firstName={profile.userInfos.firstName} />
+                        {data.map((profile) =>
+                            <ProfileCard key={profile.id} id={profile.id} firstName={profile.firstName} />
                         )}
                     </div>
                 </div>) : (
-                <span>Le tableau de bord rencontre un problème</span>
+                <span>La page d'accueil rencontre un problème</span>
             )}
         </>
     );

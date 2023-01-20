@@ -23,7 +23,7 @@ const LineChartComp = ({ id }) => {
     return (
         <>
             {loading ? (
-                <span>Chargement des données...</span >
+                <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
             ) : average ? (

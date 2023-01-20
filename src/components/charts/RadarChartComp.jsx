@@ -21,7 +21,7 @@ const RadarChartComp = ({ id }) => {
     return (
         <>
             {loading ? (
-                <span>Chargement des données...</span >
+                <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
             ) : performance ? (
@@ -50,7 +50,7 @@ const RadarChartComp = ({ id }) => {
                         </RadarChart>
                     </ResponsiveContainer>
                 </div>) : (
-                <span>Aucune statisque disponible</span>
+                <span>Aucune statistique disponible</span>
             )}
         </>
     );

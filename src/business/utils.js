@@ -1,3 +1,4 @@
+import  AllDataMockModel from "../models/AllDataMockModel";
 import  UserModel from "../models/UserModel";
 import  ActivityModel  from "../models/ActivityModel";
 import  AverageModel  from "../models/AverageModel";
@@ -63,11 +64,13 @@ export const getUrl = (online, category, id) => {
  * Returns the correct data model depending on the category of data.
  * @function
  * @param {Object} dataModel - Api Data
- * @param {string} category - "user", "activity", "average", "performance", "score"
+ * @param {string} category - "all", user", "activity", "average", "performance", "score"
  * @returns {Object} - A data model
  */
 export const getDataModel = (dataModel, category) => {
     switch (category) {
+    case "all":
+        return new AllDataMockModel(dataModel).getHomeData();
     case "user":
         return new UserModel(dataModel.data);
     case "activity":
