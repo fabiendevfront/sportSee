@@ -1,8 +1,15 @@
 /**
- * Modeling class for Average data
- * @param {Object} - apiData
+ * Average Class Model
+ * @typedef AverageDataType
+ * @type {Array.<Object>}
+ * @property {number} day
+ * @property {number} sessionLength
  */
 class AverageModel {
+    /**
+     * Modeling class for Average data
+     * @param {AverageDataType} - apiData
+     */
     constructor(apiData) {
         this.data = apiData;
     }

@@ -13,14 +13,12 @@ import NutritionalCard from "../components/NutritionalCard";
 * @returns {JSX.Element}
 */
 const Dashboard = () => {
-    const [dataUser, setDataUser] = useState(null);
     const [nutritional, setNutritional] = useState(null);
     const { id } = useParams();
     const { dataModel, loading, error } = useFetch("user", id);
 
     useEffect(() => {
         if (dataModel) {
-            setDataUser(dataModel);
             setNutritional(dataModel.getNutritional());
         }
     }, [dataModel]);
@@ -31,10 +29,10 @@ const Dashboard = () => {
                 <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
-            ) : dataUser ? (
+            ) : dataModel ? (
                 <div className="dashboard">
                     <div className="dashboard__head">
-                        <h2 className="dashboard__title">Bonjour <span className="dashboard__name">{dataUser.firstName}</span></h2>
+                        <h2 className="dashboard__title">Bonjour <span className="dashboard__name">{dataModel.firstName}</span></h2>
                         <p className="dashboard__subtitle">Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
                     </div>
                     <div className="dashboard__activity-tracking">

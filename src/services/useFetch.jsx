@@ -43,7 +43,6 @@ export const useFetch = (category, id) => {
     return { dataModel, loading, error };
 };
 
-
 useFetch.propTypes = {
     category: PropTypes.string.isRequired,
     id: PropTypes.oneOfType([

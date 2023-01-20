@@ -1,8 +1,17 @@
 /**
- * Modeling class for User data
- * @param {Object} - apiData
+ * User Class Model
+ * @typedef UserDataType
+ * @type {Object}
+ * @property {number} id
+ * @property {Object} keyData
+ * @property {number} todayScore
+ * @property {Object} userInfos
  */
 class UserModel {
+    /**
+     * Modeling class for User data
+     * @param {UserDataType} - apiData
+     */
     constructor(apiData) {
         this.data = apiData;
         this.firstName = apiData.userInfos.firstName;

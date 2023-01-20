@@ -1,8 +1,16 @@
 /**
- * Modeling class for Activity data
- * @param {Object} - apiData
+ * Activity Class Model
+ * @typedef ActivityDataType
+ * @type {Array.<Object>}
+ * @property {string} day
+ * @property {number} kilogram
+ * @property {number} calories
  */
 class ActivityModel {
+    /**
+     * Modeling class for Activity data
+     * @param {ActivityDataType} apiData - Activity data fetch
+     */
     constructor(apiData) {
         this.data = apiData;
     }

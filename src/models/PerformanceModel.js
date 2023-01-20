@@ -1,8 +1,16 @@
 /**
- * Modeling class for Performance data
- * @param {Object} - apiData
+ * Performance Class Model
+ * @typedef PerformanceDataType
+ * @type {Object}
+ * @property {Array.<Object>} data
+ * @property {Object} kind
+ * @property {number} userId
  */
 class PerformanceModel {
+    /**
+     * Modeling class for Performance data
+     * @param {PerformanceDataType} - apiData
+     */
     constructor(apiData) {
         this.allData = apiData;
         this.data = apiData.data;

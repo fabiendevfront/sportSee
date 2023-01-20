@@ -69,7 +69,7 @@ export const getUrl = (online, category, id) => {
  */
 export const getDataModel = (dataModel, category) => {
     switch (category) {
-    case "all":
+    case "home":
         return new AllDataMockModel(dataModel).getHomeData();
     case "user":
         return new UserModel(dataModel.data);
@@ -81,8 +81,6 @@ export const getDataModel = (dataModel, category) => {
         return new PerformanceModel(dataModel.data).getPerformance();
     case "score":
         return new UserModel(dataModel.data).getScore();
-    case "nutritional":
-        return new UserModel(dataModel.data).getNutritional();
     default:
         console.error("La categorie est inexistante");
         return;

@@ -1,10 +1,21 @@
+
 /**
- * Modeling class for the Mock that contains all the data
- * @param {Object} - apiData
+ * All Data Mock Class Model
+ * @typedef AllMockDataType
+ * @type {Object}
+ * @property {Array.<Object>} activity
+ * @property {Array.<Object>} average
+ * @property {Array.<Object>} performances
+ * @property {Array.<Object>} user
  */
 class AllDataMockModel {
+    /**
+     * Modeling class for the Mock that contains all the data
+     * @param {AllMockDataType} - apiData
+     */
     constructor(apiData) {
         this.data = apiData;
+        console.log(this.data);
         this.users = apiData.user;
     }
 
