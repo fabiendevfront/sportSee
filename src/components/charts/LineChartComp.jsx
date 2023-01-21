@@ -1,7 +1,6 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
 import { changeBgFocusChart } from "../../business/utils.js";
-import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
@@ -13,12 +12,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  */
 const LineChartComp = ({ id }) => {
-    const [average, setAverage] = useState(null);
     const { dataModel, loading, error } = useFetch("average", id);
-
-    useEffect(() => {
-        setAverage(dataModel);
-    }, [dataModel]);
 
     return (
         <>
@@ -26,12 +20,12 @@ const LineChartComp = ({ id }) => {
                 <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
-            ) : average ? (
+            ) : dataModel ? (
                 <div className="linechart">
                     <h3 className="linechart__title">Durée moyenne des <br />sessions</h3>
                     <ResponsiveContainer width="100%" height="100%" className="container">
                         <LineChart
-                            data={average}
+                            data={dataModel}
                             height={268}
                             margin={{ top: 50, right: 20, bottom: 5, left: 20 }}
                             onMouseMove={changeBgFocusChart}

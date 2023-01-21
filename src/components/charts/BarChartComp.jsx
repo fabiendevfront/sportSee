@@ -1,6 +1,5 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
 import CustomizedTooltip from "./CustomizedTooltip.jsx";
-import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
@@ -12,12 +11,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  */
 const BarChartComp = ({ id }) => {
-    const [activity, setActivity] = useState(null);
     const { dataModel, loading, error } = useFetch("activity", id);
-
-    useEffect(() => {
-        setActivity(dataModel);
-    }, [dataModel]);
 
     return (
         <>
@@ -25,7 +19,7 @@ const BarChartComp = ({ id }) => {
                 <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
-            ) : activity ? (
+            ) : dataModel ? (
                 <div className="barchart">
                     <div className="barchart__head">
                         <h3 className="barchart__title">Activité quotidienne</h3>
@@ -36,7 +30,7 @@ const BarChartComp = ({ id }) => {
                     </div>
                     <ResponsiveContainer aspect={3.5}>
                         <BarChart
-                            data={activity}
+                            data={dataModel}
                             margin={{ top: 80, right: 48, bottom: 32, left: 48 }}
                             barGap={8}
                             barCategoryGap="35%"

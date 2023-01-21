@@ -1,5 +1,4 @@
 import { ResponsiveContainer, RadialBarChart, RadialBar } from "recharts";
-import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
@@ -11,12 +10,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  */
 const RadialChartComp = ({ id }) => {
-    const [score, setScore] = useState(null);
     const { dataModel, loading, error } = useFetch("score", id);
-
-    useEffect(() => {
-        setScore(dataModel);
-    }, [dataModel]);
 
     return (
         <>
@@ -24,22 +18,22 @@ const RadialChartComp = ({ id }) => {
                 <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
-            ) : score ? (
+            ) : dataModel ? (
                 <div className="radialchart">
                     <h3 className="radialchart__title">Score</h3>
                     <div className="radialchart__score">
                         <div className="radialchart__items">
-                            <p className="radialchart__result">{score[1].todayScore} %</p>
+                            <p className="radialchart__result">{dataModel[1].todayScore} %</p>
                             <p className="radialchart__txt">de votre objectif</p>
                         </div>
                     </div>
                     <ResponsiveContainer width="100%" height="100%">
                         <RadialBarChart
+                            data={dataModel}
                             width={400}
                             height={400}
                             innerRadius="80%"
                             barSize={10}
-                            data={score}
                             startAngle={90}
                             endAngle={450}
                         >

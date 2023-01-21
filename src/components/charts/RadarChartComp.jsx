@@ -1,5 +1,4 @@
 import { ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis } from "recharts";
-import { useEffect, useState } from "react";
 import { useFetch } from "../../services/useFetch.jsx";
 import PropTypes from "prop-types";
 
@@ -11,12 +10,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element}
  */
 const RadarChartComp = ({ id }) => {
-    const [performance, setPerformance] = useState(null);
     const { dataModel, loading, error } = useFetch("performance", id);
-
-    useEffect(() => {
-        setPerformance(dataModel);
-    }, [dataModel]);
 
     return (
         <>
@@ -24,11 +18,11 @@ const RadarChartComp = ({ id }) => {
                 <span>Chargement des données...</span>
             ) : error && !loading ? (
                 <span>Erreur lors du chargement des données</span>
-            ) : performance ? (
+            ) : dataModel ? (
                 <div className="radarchart">
                     <ResponsiveContainer width="100%" height="100%">
                         <RadarChart
-                            data={performance}
+                            data={dataModel}
                             cx="50%"
                             cy="50%"
                             outerRadius="65%"

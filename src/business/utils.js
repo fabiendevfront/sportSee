@@ -5,7 +5,7 @@ import  AverageModel  from "../models/AverageModel";
 import  PerformanceModel from "../models/PerformanceModel";
 
 // A boolean constant for fetch on mock or Api in useFetch
-export const online = false;
+export const online = true;
 
 // Array of the users ids
 export const validIds = ["12", "18"];
