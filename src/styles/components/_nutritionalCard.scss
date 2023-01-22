@@ -14,9 +14,19 @@
     padding: 32px;
     border-radius: 5px;
 
+    @include mixins.small-break {
+        padding: 15px;
+        gap: 12px;
+    }
+
     &__icon {
         width: 60px;
         height: 60px;
+
+        @include mixins.medium-break {
+            width: 33%;
+            height: auto;
+        }
     }
 
     &__count {

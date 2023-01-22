@@ -66,7 +66,7 @@ const BarChartComp = ({ id }) => {
                                 stroke="#9B9EAC"
                                 axisLine={false}
                                 tickLine={false}
-                                hide
+                                hide={true}
                             />
                             <Tooltip
                                 content={<CustomizedTooltip />}
